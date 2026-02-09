@@ -85,10 +85,3 @@ mysql2/promise使用
 TypeScriptのesModuleInterop設定が不足していたため、import express構文でエラー発生。esModuleInterop: true と verbatimModuleSyntax: false を追加して解決
 tsconfig.jsonでrootDirとoutDirをコメント解除し、ビルド成果物をdist/に出力するよう設定
 Docker Composeのversionキーは不要 (Docker Compose V2以降は obsolete)
-
-今後の拡張予定
-initdb/init.sql でテーブル作成SQL追加
-.github/workflows/deploy.yml でCI/CD設定
-API エンドポイント追加
-
-次のステップはテーブル設計とAPI実装
