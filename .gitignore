@@ -1,0 +1,7 @@
+next-basic/
+vite-react-0206/
+backend/
+db/data/
+node_modules/
+.env
+*.log
