@@ -76,7 +76,9 @@ INSERT INTO quiz (slug, category_id, author_id, question, explanation) VALUES
 
 ('nginx-return-redirect', @cat_id, 1, 'HTTPからHTTPSへのリダイレクトなど、特定のステータスコードと共にURLを転送するディレクティブは？', '正解は `return` です。`return 301 https://$host$request_uri;` と記述するのが、最も高速で推奨されるリダイレクト方法です。古い `rewrite` よりも処理が軽量です。'),
 
-('nginx-keepalive', @cat_id, 1, '1つのTCP接続を維持して複数のリクエストを処理させる設定は？', '正解は `keepalive_timeout` です。接続の確立・切断にかかるオーバーヘッドを減らし、パフォーマンスを向上させます。');
+('nginx-keepalive', @cat_id, 1, '1つのTCP接続を維持して複数のリクエストを処理させる設定は？', '正解は `keepalive_timeout` です。接続の確立・切断にかかるオーバーヘッドを減らし、パフォーマンスを向上させます。'),
+
+('nginx-upstream-sent-too-big-header', @cat_id, 1, 'Nginxのエラーログに「upstream sent too big header while reading response header from upstream」と表示された場合、まず見直すべき設定は？', '正解は `proxy_buffer_size` や `proxy_buffers`（必要に応じて `fastcgi_buffers`）です。バックエンドが返すレスポンスヘッダー（Set-Cookie など）が大きすぎると、Nginxのバッファに収まらずこのエラーが発生します。ヘッダーサイズに合わせてバッファを拡張します。');
 
 
 -- --------------------------------------------------------
@@ -202,4 +204,10 @@ INSERT INTO quiz_choice (quiz_id, choice_text, is_correct, display_order) VALUES
 (@quiz_start + 19, 'keepalive_timeout', 1, 1),
 (@quiz_start + 19, 'connection_persist', 0, 2),
 (@quiz_start + 19, 'persistent_timeout', 0, 3),
-(@quiz_start + 19, 'http_alive', 0, 4);
+(@quiz_start + 19, 'http_alive', 0, 4),
+
+-- Q21: Upstream Sent Too Big Header
+(@quiz_start + 20, 'client_max_body_size', 0, 1),
+(@quiz_start + 20, 'proxy_buffer_size / proxy_buffers', 1, 2),
+(@quiz_start + 20, 'worker_processes', 0, 3),
+(@quiz_start + 20, 'sendfile', 0, 4);
