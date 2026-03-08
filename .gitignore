@@ -1,6 +1,7 @@
 next-basic/
 vite-react-0206/
 backend/
+admin-vue3/
 db/data/
 node_modules/
 .env
