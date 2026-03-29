@@ -49,6 +49,7 @@ services:
     restart: always
     environment:
       - ALLOWED_SENDER_DOMAINS=ntorelabo.com
+      - POSTFIX_inet_protocols=ipv4
     ports:
       - "1025:25"
 
