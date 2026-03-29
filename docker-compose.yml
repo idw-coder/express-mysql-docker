@@ -16,6 +16,15 @@ services:
       timeout: 5s
       retries: 5
 
+  mailserver:
+    image: boky/postfix
+    container_name: mailserver
+    restart: always
+    environment:
+      - ALLOWED_SENDER_DOMAINS=localhost
+    ports:
+      - "1025:25"
+
   backend:
     build:
       context: ./backend
@@ -32,6 +41,8 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+      mailserver:
+        condition: service_started
 
 volumes:
   mysql_data:
