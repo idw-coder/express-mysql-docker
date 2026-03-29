@@ -48,7 +48,7 @@ services:
     container_name: mailserver
     restart: always
     environment:
-      - ALLOWED_SENDER_DOMAINS=localhost
+      - ALLOWED_SENDER_DOMAINS=ntorelabo.com
     ports:
       - "1025:25"
 
