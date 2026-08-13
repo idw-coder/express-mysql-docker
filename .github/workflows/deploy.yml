@@ -18,4 +18,9 @@ jobs:
           script: |
             cd /var/www/app
             git pull origin main
-            docker-compose -f docker-compose.prod.yml up -d --build
+            # docker-compose.prod.yml のサービスはすべて image 指定（build なし）なので
+            # --build は付けない。Expressバックエンドをサーバー上でビルドしていた名残で
+            # ビルドキャッシュが38GBまで肥大しディスクを圧迫した経緯がある。
+            docker-compose -f docker-compose.prod.yml up -d
+            # 保険。7日より古いビルドキャッシュだけ落とすので直近のビルドは速いまま。
+            docker builder prune -af --filter "until=168h"
